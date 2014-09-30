@@ -26,6 +26,7 @@ def main():
         do=showData()
     else:
         do=setData()
+        do.cmdloop()
 
 
 if __name__=="__main__":

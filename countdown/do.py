@@ -2,7 +2,7 @@
 #coding:utf8
 # Author          : tuxpy
 # Email           : q8886888@qq.com
-# Last modified   : 2014-09-01 17:39:09
+# Last modified   : 2014-09-30 18:15:21
 # Filename        : countdown/do.py
 # Description     : 
 from countdown.core import countDown,ErrorDate
@@ -16,7 +16,7 @@ class showData(countDown):
 class setData(countDown):
     def __init__(self):
         countDown.__init__(self)
-        self.input_do()
+    #    self.input_do()
 
     def input_do(self):
         while 1:
@@ -47,9 +47,11 @@ class setData(countDown):
                 print "请输入正确日期!"
                 return None
 
-            
-            self.database.update(thing,
+            if update_days:
+                self.database.update(thing,
                     date + ':' + update_days)
+            else:
+                self.database.update(thing, date) 
             self.logger.info("%s >> %s"%(thing,date))
             self.handler("show")
         except (KeyError,ValueError):

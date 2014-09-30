@@ -2,11 +2,12 @@
 #coding:utf8
 # Author          : tuxpy
 # Email           : q8886888@qq.com
-# Last modified   : 2014-09-06 15:25:35
+# Last modified   : 2014-09-30 18:16:33
 # Filename        : countdown/core.py
 # Description     : 
 
 from countdown.data import DoDataBase
+from cmd import Cmd
 import re
 import sys
 import datetime
@@ -15,7 +16,8 @@ import logging
 
 class ErrorDate(Exception):pass
 
-class commandHandler():
+class commandHandler(Cmd):
+    prompt = '> '
     def handler(self,line):
         parts=line.split(' ',1)
         cmd=parts[0]
@@ -42,6 +44,7 @@ class commandHandler():
 
 class countDown(commandHandler):
     def __init__(self):
+        Cmd.__init__(self)
         self.__conflog()
         self.re_thing=re.compile(r"\"(.+?)\"")
         self.database=DoDataBase()
