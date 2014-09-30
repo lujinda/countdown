@@ -2,7 +2,7 @@
 #coding:utf8
 # Author          : tuxpy
 # Email           : q8886888@qq.com
-# Last modified   : 2014-09-30 18:16:33
+# Last modified   : 2014-09-30 18:51:28
 # Filename        : countdown/core.py
 # Description     : 
 
@@ -18,6 +18,9 @@ class ErrorDate(Exception):pass
 
 class commandHandler(Cmd):
     prompt = '> '
+
+    def default(self, *args):
+        self.do_help(*args)
     def handler(self,line):
         parts=line.split(' ',1)
         cmd=parts[0]
